@@ -1,0 +1,48 @@
+.Body {
+    font-family: Arial, sans-serif;
+    align-items: center
+}
+header{
+    width: 100%; display: flex; justify-content: center
+}
+.verifyContainer {
+    width: 50%;
+    margin: 3% auto 10% auto;
+    padding: 20px;
+    text-align: center;
+}
+.conde-inputs{
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    flex-direction: row;
+}
+.code-input {
+    font-size: 2em;
+    text-align: center;
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 1em;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.8;
+}
+.back-link {
+    display: block;
+    margin: 10px 0;
+    color: #0056b3;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+}
+header{
+    background: #f9f9f9;
+}
+.contractContainer {
+    width: 100%;
+    margin: 4% auto 5% auto;
+    padding-left: 10%
+}
+form {
+    width: 85%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+}
+input[type=text], input[type=number], select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.file-input {
+    border: 1px dashed #ccc;
+    padding: 10px;
+    text-align: center;
+    margin: 8px 0;
+}
+.file-input input[type=file] {
+    width: 100%;
+}
+input[type=submit] {
+    background-color: #0056b3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+.back-button {
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+}
