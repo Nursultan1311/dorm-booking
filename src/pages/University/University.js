@@ -47,7 +47,7 @@ const University = () => {
                 }, {
                     onSuccess: (options) => {
                         console.log({'jwt': localStorage.getItem('accessToken'), 'university': university.slug})
-                        fetch('http://localhost:8000/api/approve', {
+                        fetch('https://dorm-booking.up.railway.app/api/approve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const University = () => {
 
     const [university, setUniversity] = useState({})
     useEffect( () => {
-        fetch('http://localhost:8000/api/university/' + id)
+        fetch('https://dorm-booking.up.railway.app/api/university/' + id)
             .then((response) => {
                 return response.json()
             }).then(data => {
@@ -110,7 +110,7 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'http://localhost:8000/' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app/' + university.image} alt="Slide"/>
                         </SplideSlide>
                         <SplideSlide key={1}>
                             <img width="100%" src={image} alt="Slide"/>

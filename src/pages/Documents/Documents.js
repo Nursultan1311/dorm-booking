@@ -173,7 +173,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     }, []);
 
     const loadDocuments = () => {
-        fetch('http://localhost:8000/api/documents', {
+        fetch('https://dorm-booking.up.railway.app/api/documents', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
         formData.append('jwt', localStorage.getItem('accessToken'));
 
         try {
-            const response = await axios.post('http://localhost:8000/api/upload_document', formData, {
+            const response = await axios.post('https://dorm-booking.up.railway.app/api/upload_document', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${localStorage.getItem('accessToken')}`

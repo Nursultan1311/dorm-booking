@@ -16,7 +16,7 @@ const Main = () => {
   const [showSupport, setShowSupport] = useState();
   const [showLanguage, setShowLanguage] = useState();
   useEffect(() => {
-    fetch('http://localhost:8000/api/universities', {
+    fetch('https://dorm-booking.up.railway.app/api/universities', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const Main = () => {
             <div className="popular__card">
               <div className="popular__time">7 day 23:59:59</div>
               <div className="popular__img">
-                <img src={'http://localhost:8000/' + el.image}  alt="popular card"/>
+                <img src={'https://dorm-booking.up.railway.app/' + el.image}  alt="popular card"/>
               </div>
               <div className="popular__texts">
                 <div className="flex__custom">

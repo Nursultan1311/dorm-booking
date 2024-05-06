@@ -9,7 +9,7 @@ function Header() {
     })
 
     useEffect( () => {
-        fetch('http://localhost:8000/api/user', {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
