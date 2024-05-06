@@ -110,7 +110,7 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'https://dorm-booking.up.railway.app/' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
                         </SplideSlide>
                         <SplideSlide key={1}>
                             <img width="100%" src={image} alt="Slide"/>
