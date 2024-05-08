@@ -11,6 +11,7 @@ import PickPlace from "./components/PickPlace/PickPlace";
 import University from "./pages/University/University";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Privacy from "./pages/Privacy/Privacy";
+import PlacePicker from "./pages/PlacePicker/PlacePicker";
 
 export const router = createBrowserRouter([
         {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
         {
             path: "/privacy",
             element: <Privacy/>
+        },
+        {
+            path: "/place",
+            element: <PlacePicker/>
         }
     ]
 );

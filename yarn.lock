@@ -8721,6 +8721,11 @@ react-scroll@1.7.16:
     lodash.throttle "^4.1.1"
     prop-types "^15.5.8"
 
+react-seat-picker@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-seat-picker/-/react-seat-picker-1.5.1.tgz#4a0f643536264efb532822e7f911c9d2a7ec8ef0"
+  integrity sha512-wXWLJlYQVHEjIgPFTRLSu6XyNbYaMaxEAuZX4l3sXFrEKWDD61f6KuM1G5ehx1A6PgCkcNDsSXAH0lOfqSIL8w==
+
 react-text-mask@^5.4.3:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.5.0.tgz#468ea690160b364981205f5633e7475e939383ff"
@@ -8737,6 +8742,14 @@ react-toastify@5.5.0:
     classnames "^2.2.6"
     prop-types "^15.7.2"
     react-transition-group "^4"
+
+react-tooltip@3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-3.11.1.tgz#7b4ce48ed26a46e996662b19a2afebbfd483513b"
+  integrity sha512-YCMVlEC2KuHIzOQhPplTK5jmBBwoL+PYJJdJKXj7M/h7oevupd/QSVq6z5U7/ehIGXyHsAqvwpdxexDfyQ0o3A==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
 
 react-transition-group@4.3.0:
   version "4.3.0"
