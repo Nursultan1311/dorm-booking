@@ -9,7 +9,7 @@ function Header() {
     })
 
     useEffect( () => {
-        fetch('https://dorm-booking.up.railway.app/api/user', {
+        fetch('http://localhost:8000/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,23 +29,29 @@ function Header() {
     return (
         <div className="container">
             <div className="flex-row position-relative flex justify-between align-items-center">
-                <div><a href="/"><img src={logo}  alt={'Logo'}/></a></div>
-                <div className="nav__link">About</div>
-                <div className="nav__link">Support</div>
+                <div><a href="/"><img src={logo} alt={'Logo'}/></a></div>
+                <div className="nav__link"><Link to={'/about_us'} className='nav__link'>About</Link></div>
+                <div className="nav__link"><Link to={'/about_us'} className='nav__link'>Support</Link></div>
                 <div className="position-absolute"></div>
                 <div className="nav__link">En</div>
                 <div className="nav__link">
-                { signedIn ? (
-                    <Link to="/profile" style={{ display: 'flex', gap: '15px'}}>
-                        <img src={userpng} style={{height: '40px'}} alt="User" />
-                        <p style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', margin: '0'}}>
-                            {user.email}
-                        </p>
-                    </Link>
-                
-                ):(
-                    <Link to='/login' className="nav__btn" >Log In</Link>
-                )}
+                    {signedIn ? (
+                        <Link to="/profile" style={{display: 'flex', gap: '15px'}}>
+                            <img src={userpng} style={{height: '40px'}} alt="User"/>
+                            <p style={{
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-around',
+                                margin: '0'
+                            }}>
+                                {user.email}
+                            </p>
+                        </Link>
+
+                    ) : (
+                        <Link to='/login' className="nav__btn">Log In</Link>
+                    )}
                 </div>
             </div>
         </div>

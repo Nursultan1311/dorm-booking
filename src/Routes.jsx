@@ -7,8 +7,10 @@ import Documents from "./pages/Documents/Documents";
 import Login from "./pages/Login/Login";
 import Main from "./pages/Main/Main";
 import Booking from "./pages/Booking/Booking";
-import PickPlace from "./pages/PickPlace/PickPlace";
+import PickPlace from "./components/PickPlace/PickPlace";
 import University from "./pages/University/University";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Privacy from "./pages/Privacy/Privacy";
 
 export const router = createBrowserRouter([
         {
@@ -47,5 +49,13 @@ export const router = createBrowserRouter([
             path: "/university/:id",
             element: <University/>,
         },
+        {
+            path: "/about_us",
+            element: <AboutUs/>
+        },
+        {
+            path: "/privacy",
+            element: <Privacy/>
+        }
     ]
 );

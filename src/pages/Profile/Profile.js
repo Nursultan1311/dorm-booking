@@ -78,53 +78,86 @@ const styles = {
 
 const PersonalInfoCard = () => {
     const navigate = useNavigate();
-    let [user, setUser] = useState({
-        "email": "",
-        "first_name": "",
-        "last_name": "",
-    });
+    const [user, setUser] = useState({ email: "", first_name: "", last_name: "" });
+    const [editMode, setEditMode] = useState({ email: false, first_name: false, last_name: false });
+    const [editData, setEditData] = useState({ email: "", first_name: "", last_name: "" });
+
+    useEffect(() => {
+        fetchUserData();
+    }, []);
+
+    const fetchUserData = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'jwt': localStorage.getItem('accessToken') })
+            });
+            if (response.status !== 200) navigate('/login');
+            const data = await response.json();
+            setUser(data);
+            setEditData(data); // Initialize editData with fetched data
+        } catch (error) {
+            console.error('Failed to fetch user data:', error);
+        }
+    };
+
+    const toggleEdit = (field) => {
+        setEditMode(prev => ({ ...prev, [field]: !prev[field] }));
+    };
+
+    const handleEditChange = (field, value) => {
+        setEditData(prev => ({ ...prev, [field]: value }));
+    };
+
+    const saveChanges = async (field) => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/user/update/${field}/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ [field]: editData[field], 'jwt': localStorage.getItem('accessToken') })
+            });
+            if (response.ok) {
+                window.location.reload();
+                toggleEdit(field);
+            } else {
+                console.error('Failed to update:', await response.text());
+            }
+        } catch (error) {
+            console.error('Failed to send update:', error);
+        }
+    };
     function exit(){
         localStorage.removeItem("accessToken")
         navigate('/login')
     }
-    useEffect(() => {
-        try {
-            fetch('https://dorm-booking.up.railway.app/api/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({'jwt': localStorage.getItem('accessToken')})
-            })
-                .then((response) => {
-                    if(response.status != 200){
-                        navigate('/login')
-                    }
-                    return response.json()
-                }).then(data => {
-                setUser(data)
-            })
-                .catch((error) => {
-                    console.log(error)
-                })
-        } catch (error){
-            console.log(error)
-        }
-
-    }, []);
     return (
         <div style={styles.card}>
             <div style={styles.cardHeader}>
                 Редактировать фотографию профиля
             </div>
             <hr/>
+
             <div style={{...styles.cardContent, ...styles.clear}}>
                 Name Surname
-                <span style={styles.editLink}>Редактировать</span>
+                {editMode.first_name ? (
+                        <span onClick={() => saveChanges('first_name')} style={styles.editLink}>Сохранить</span>
+                        ) : (
+                        <span onClick={() => toggleEdit('first_name')} style={styles.editLink}>Редактировать</span>
+                )}
+
             </div>
 
             <div style={styles.cardContent}>
-                <p style={styles.p}>{user.first_name + " " + user.last_name}</p>
+                {editMode.first_name ? (
+                        <input
+                            type="text"
+                            value={editData.first_name}
+                            onChange={(e) => handleEditChange('first_name', e.target.value)}
+                        />
+                ) : (
+                    <p style={styles.p}>{user.first_name + " " + user.last_name}</p>
+                    )}
             </div>
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
@@ -133,14 +166,28 @@ const PersonalInfoCard = () => {
             </div>
             <div style={styles.cardContent}>
                 <p style={styles.p}>Мужской</p>
-            </div>
+            </div>f
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
                 Email address
-                <span style={styles.editLink}>Редактировать</span>
+                {editMode.email ? (
+                    <span onClick={() => saveChanges('email')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('email')} style={styles.editLink}>Редактировать</span>
+                )}
+
             </div>
+
             <div style={styles.cardContent}>
-                <p style={styles.p}>{user.email}</p>
+                {editMode.email ? (
+                    <input
+                        type="text"
+                        value={editData.email}
+                        onChange={(e) => handleEditChange('email', e.target.value)}
+                    />
+                ) : (
+                    <p style={styles.p}>{user.email}</p>
+                )}
             </div>
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>

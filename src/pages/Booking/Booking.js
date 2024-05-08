@@ -151,7 +151,7 @@ const BookingStatus = ({ onUploadSuccess, onUploadFailure }) => {
         ],
     };
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/application', {
+        fetch('http://localhost:8000/api/application', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

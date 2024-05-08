@@ -1,8 +1,8 @@
 // ... other imports ...
 import axios from 'axios';
-import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import {Link} from "react-router-dom";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../Footer/Footer";
 import React, {useEffect, useState} from "react";
 import {FaUpload} from "react-icons/fa";
 import {BsFillFileEarmarkTextFill} from "react-icons/bs";
