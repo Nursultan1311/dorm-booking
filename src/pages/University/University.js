@@ -16,9 +16,8 @@ import SeatPicker from "react-seat-picker";
 const University = () => {
     const [loading, setLoading] = useState(false);
 
-    const processSeatAction = async (action, callback, row, number, id, delay) => {
+    const processSeatAction = async (action, callback, row, number, id) => {
         setLoading(true);
-        await new Promise(resolve => setTimeout(resolve, delay));
         console.log(`${action} seat ${number}, row ${row}, id ${id}`);
         callback(row, number, id, `tooltip for id-${id} added by callback`);
         setLoading(false);
@@ -37,21 +36,19 @@ const University = () => {
             );
             removeCb(params.row, params.number);
         }
-        setPlace(true)
-        console.log(`Added seat ${number}, row ${row}, id ${id}`);
+        console.log(`Added seat ${number}, row ${row}, id ${id} ${place}`);
         const newTooltip = `tooltip for id-${id} added by callback`;
         addCb(row, number, id, newTooltip);
-        setPlace(true)
         setLoading(false)
 
     };
 
     const addSeatCallback = ({ row, number, id }, addCb) => {
-        processSeatAction("Added", addCb, row, number, id, 1500);
+        processSeatAction("Added", addCb, row, number, id );
     };
 
     const removeSeatCallback = ({ row, number, id }, removeCb) => {
-        processSeatAction("Removed", removeCb, row, number, id, 1500);
+        processSeatAction("Removed", removeCb, row, number, id);
     };
 
     const rows = [
@@ -124,11 +121,6 @@ const University = () => {
         script.async = true;
         script.onload = () => {
             window.pay = () => {
-                console.log(place)
-                if(!place){
-                    alert('Pick place first')
-                    return
-                }
                 const widget = new window.cp.CloudPayments();
                 widget.pay('auth', {
                     publicId: 'test_api_00000000000000000000002',
@@ -158,7 +150,7 @@ const University = () => {
                 }, {
                     onSuccess: (options) => {
                         console.log({'jwt': localStorage.getItem('accessToken'), 'university': university.slug})
-                        fetch('http://localhost:8000/api/approve', {
+                        fetch('https://dorm-booking.up.railway.app/api/approve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -184,7 +176,7 @@ const University = () => {
 
     const [university, setUniversity] = useState({})
     useEffect( () => {
-        fetch('http://localhost:8000/api/university/' + id)
+        fetch('https://dorm-booking.up.railway.app/api/university/' + id)
             .then((response) => {
                 return response.json()
             }).then(data => {
@@ -221,7 +213,7 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'http://localhost:8000' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
                         </SplideSlide>
                         <SplideSlide key={1}>
                             <img width="100%" src={image} alt="Slide"/>

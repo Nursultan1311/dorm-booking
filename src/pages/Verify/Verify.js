@@ -15,7 +15,7 @@ function Contract() {
         const sms_code = formData.get("1") + formData.get("2") + formData.get("3") + formData.get("4") + formData.get("5") + formData.get("6")
         console.log(sms_code)
         try {
-            const response = await fetch('http://localhost:8000/api/registration-confirm', {
+            const response = await fetch('https://dorm-booking.up.railway.app/api/registration-confirm', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
