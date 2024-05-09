@@ -79,7 +79,7 @@ const styles = {
 const PersonalInfoCard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({ email: "", first_name: "", last_name: "" });
-    const [editMode, setEditMode] = useState({ email: false, first_name: false, last_name: false });
+    const [editMode, setEditMode] = useState({ email: false, first_name: false, last_name: false, birth_date: false, iin:false });
     const [editData, setEditData] = useState({ email: "", first_name: "", last_name: "" });
 
     useEffect(() => {
@@ -141,23 +141,23 @@ const PersonalInfoCard = () => {
             <div style={{...styles.cardContent, ...styles.clear}}>
                 Name Surname
                 {editMode.first_name ? (
-                        <span onClick={() => saveChanges('first_name')} style={styles.editLink}>Сохранить</span>
-                        ) : (
-                        <span onClick={() => toggleEdit('first_name')} style={styles.editLink}>Редактировать</span>
+                    <span onClick={() => saveChanges('first_name')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('first_name')} style={styles.editLink}>Редактировать</span>
                 )}
 
             </div>
 
             <div style={styles.cardContent}>
                 {editMode.first_name ? (
-                        <input
-                            type="text"
-                            value={editData.first_name}
-                            onChange={(e) => handleEditChange('first_name', e.target.value)}
-                        />
+                    <input
+                        type="text"
+                        value={editData.first_name}
+                        onChange={(e) => handleEditChange('first_name', e.target.value)}
+                    />
                 ) : (
                     <p style={styles.p}>{user.first_name + " " + user.last_name}</p>
-                    )}
+                )}
             </div>
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
@@ -166,7 +166,8 @@ const PersonalInfoCard = () => {
             </div>
             <div style={styles.cardContent}>
                 <p style={styles.p}>Мужской</p>
-            </div>f
+            </div>
+            f
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
                 Email address
@@ -191,19 +192,47 @@ const PersonalInfoCard = () => {
             </div>
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
-                Birth Date
-                <span style={styles.editLink}>Редактировать</span>
+                Birth date
+                {editMode.birth_date ? (
+                    <span onClick={() => saveChanges('birth_date')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('birth_date')} style={styles.editLink}>Редактировать</span>
+                )}
+
             </div>
+
             <div style={styles.cardContent}>
-                <p style={styles.p}>14.07.2004</p>
+                {editMode.birth_date ? (
+                    <input
+                        type="text"
+                        value={editData.birth_date}
+                        onChange={(e) => handleEditChange('birth_date', e.target.value)}
+                    />
+                ) : (
+                    <p style={styles.p}>{user.birth_date}</p>
+                )}
             </div>
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
-                SSN
-                <span style={styles.editLink}>Редактировать</span>
+                ИИН
+                {editMode.iin ? (
+                    <span onClick={() => saveChanges('iin')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('iin')} style={styles.editLink}>Редактировать</span>
+                )}
+
             </div>
+
             <div style={styles.cardContent}>
-                <p style={styles.p}>020716550669</p>
+                {editMode.iin ? (
+                    <input
+                        type="text"
+                        value={editData.iin}
+                        onChange={(e) => handleEditChange('iin', e.target.value)}
+                    />
+                ) : (
+                    <p style={styles.p}>{user.iin}</p>
+                )}
             </div>
             <hr/>
             <div style={styles.cardContent}>
@@ -224,16 +253,16 @@ const Profile = () => {
                 </h1>
                 <nav style={styles.nav}>
                     <Link to="/profile" style={styles.navItemMain}>Личная информация</Link>
-                <Link to="/documents" style={styles.navItem}>Документы</Link>
-                <Link to="/bookings" style={styles.navItem}>Бронь</Link>
-            </nav>
-            <div style={styles.personalCardInfo}>
-                <PersonalInfoCard  />
+                    <Link to="/documents" style={styles.navItem}>Документы</Link>
+                    <Link to="/bookings" style={styles.navItem}>Бронь</Link>
+                </nav>
+                <div style={styles.personalCardInfo}>
+                    <PersonalInfoCard/>
+                </div>
             </div>
-        </div>
-        <Footer/>
+            <Footer/>
 
-    </div>
+        </div>
     );
 };
 

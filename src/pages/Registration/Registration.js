@@ -4,7 +4,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import {useNavigate} from "react-router-dom";
 
-
 function Registration() {
     const navigate = useNavigate();
 
@@ -49,6 +48,8 @@ function Registration() {
             console.error('There was a problem with your fetch operation:', error);
         }
     }
+    const [value, onChange] = useState(new Date());
+
     return (
     <div>
         <Header/>
@@ -74,8 +75,18 @@ function Registration() {
                 <label htmlFor="email">Email address</label>
                 <input type="email" id="email" name="email" required/>
 
-                <label htmlFor="phone_number">Phone number</label>
+                <label htmlFor="phone_number">Phone number </label>
                 <input type="number" id="phone_number" name="phone_number" required/>
+
+                <label htmlFor="iin">ИИН</label>
+                <input type="number" id="iin" name="iin" required/>
+
+                <label htmlFor="birth_date">Date of birth</label>
+                <br/>
+
+                <input type="date" id="birth_date" name="birth_date" required/>
+                <br/>
+                <br/>
 
                 <label htmlFor="psw">Password</label>
                 <input type="password" id="psw" name="password" required/>

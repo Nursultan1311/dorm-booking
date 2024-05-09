@@ -3,14 +3,10 @@ import React, {useEffect, useState} from "react";
 import Footer from "../../components/Footer/Footer";
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import image from "./img.png"
 import location from "./location.png"
 import calendar from "./calendar.png"
-import places from "./places.png"
 import facilities from "./facilities.png"
-import { load } from '@2gis/mapgl';
 import {useParams} from "react-router-dom";
-import PlacePicker from "../PlacePicker/PlacePicker";
 import SeatPicker from "react-seat-picker";
 
 const University = () => {
@@ -174,15 +170,18 @@ const University = () => {
         };
     }, []);
 
-    const [university, setUniversity] = useState({})
+    const [university, setUniversity] = useState({
+        images: []
+    })
     useEffect( () => {
         fetch('https://dorm-booking.up.railway.app/api/university/' + id)
             .then((response) => {
                 return response.json()
-            }).then(data => {
-                console.log(data)
-                setUniversity(data)
-            })
+            }).then(async data => {
+            console.log(data)
+            setUniversity(data)
+            console.log(university.images)
+        })
             .catch((error) => {
                 console.log(error)
             })
@@ -215,9 +214,11 @@ const University = () => {
                         <SplideSlide key={0}>
                             <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
                         </SplideSlide>
-                        <SplideSlide key={1}>
-                            <img width="100%" src={image} alt="Slide"/>
-                        </SplideSlide>
+                        {university.images?.map((el, index) => (
+                            <SplideSlide key={index+1}>
+                                <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
+                            </SplideSlide>
+                        ))}
                     </Splide>
                     <div className="images">
                         <Splide
@@ -232,18 +233,18 @@ const University = () => {
                                 gap: '20px',
                             }}
                         >
-                            <SplideSlide key={0}>
-                                <img width="100%" src={image} alt="Slide"/>
-                            </SplideSlide>
-                            <SplideSlide key={1}>
-                                <img width="100%" src={image} alt="Slide"/>
-                            </SplideSlide>
-                            <SplideSlide key={2}>
-                                <img width="100%" src={image} alt="Slide"/>
-                            </SplideSlide>
+                            {/*{university.images[0]}*/}
+                            {university.images?.map((el, index) => (
+                                <SplideSlide key={index}>
+                                    <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
+                                </SplideSlide>
+                            ))}
                         </Splide>
                     </div>
-                    <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Overview</h5>
+                    {/*{university.images.map((el, index) => {*/}
+                    {/*    <a>{el}</a>*/}
+                    {/*})}*/}
+                        <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Overview</h5>
                     <p>
                         {university.description}
                     </p>
