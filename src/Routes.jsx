@@ -12,6 +12,8 @@ import University from "./pages/University/University";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Privacy from "./pages/Privacy/Privacy";
 import PlacePicker from "./pages/PlacePicker/PlacePicker";
+import Admin from "./pages/Admin/Admin";
+import Application from "./pages/Applicatoin/Application";
 
 export const router = createBrowserRouter([
         {
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
         {
             path: "/place",
             element: <PlacePicker/>
+        },
+        {
+            path: "/admin",
+            element: <Admin/>
+        },
+        {
+            path: "/change/:id",
+            element: <Application/>
         }
     ]
 );

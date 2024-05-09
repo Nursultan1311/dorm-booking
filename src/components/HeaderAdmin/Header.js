@@ -29,7 +29,7 @@ function AdminHeader() {
     return (
         <div className="container">
             <div className="flex-row position-relative flex justify-between align-items-center">
-                <div><a href="/"><img src={logo} alt={'Logo'}/></a></div>
+                <div><a href="/admin"><img src={logo} alt={'Logo'}/></a></div>
                 <div className="nav__link"><Link to={'/about_us'} className='nav__link'>About</Link></div>
                 <div className="nav__link"><Link to={'/privacy'} className='nav__link'>Privacy Policy</Link></div>
                 <div className="position-absolute"></div>
