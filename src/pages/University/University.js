@@ -110,6 +110,8 @@ const University = () => {
             { id: 30, number: 6, isReserved: true }
         ]
     ];
+
+    let slug = ''
     const [place, setPlace] = useState(false)
     useEffect(() => {
         const script = document.createElement('script');
@@ -145,13 +147,13 @@ const University = () => {
                     }
                 }, {
                     onSuccess: (options) => {
-                        console.log({'jwt': localStorage.getItem('accessToken'), 'university': university.slug})
+                        console.log(slug)
                         fetch('https://dorm-booking.up.railway.app/api/approve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({'jwt': localStorage.getItem('accessToken'), 'university': university.slug})
+                            body: JSON.stringify({'jwt': localStorage.getItem('accessToken'), 'university': slug})
                         })
                             .catch(error => console.error('Error fetching documents', error));
                     },
@@ -171,6 +173,7 @@ const University = () => {
     }, []);
 
     const [university, setUniversity] = useState({
+        slug: '',
         images: []
     })
     useEffect( () => {
@@ -179,8 +182,8 @@ const University = () => {
                 return response.json()
             }).then(async data => {
             console.log(data)
+            slug = data.slug
             setUniversity(data)
-            console.log(university.images)
         })
             .catch((error) => {
                 console.log(error)
