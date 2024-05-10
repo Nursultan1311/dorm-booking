@@ -33,9 +33,6 @@
     position: absolute;
     right: 5%;
 }
-p{
-    width: 80%;
-}
 input[type="text"], input[type="email"], input[type="file"] {
     width: 100%;
     padding: 8px;

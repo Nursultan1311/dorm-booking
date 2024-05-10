@@ -32,7 +32,7 @@ const Modal = ({ isOpen, onClose }) => {
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Partner with us</h2>
-                <p>Simply complete the form below and a member of our friendly team of experts will be in touch at a time that suits you.</p>
+                <p style={{width: "80%"}}>Simply complete the form below and a member of our friendly team of experts will be in touch at a time that suits you.</p>
                 <p><a style={{color: 'red'}}> * </a> Required information</p>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="fullName" placeholder="Full name *" required onChange={handleChange}/>
