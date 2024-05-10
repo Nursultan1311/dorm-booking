@@ -448,6 +448,7 @@ const Profile = () => {
     const handleUploadFailure = (error) => {
         console.error('Error uploading file:', error);
     };
+    const navigate = useNavigate()
 
     const [application, setApplication] = useState(0)
     const data = {
