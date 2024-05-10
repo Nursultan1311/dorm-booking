@@ -199,60 +199,70 @@ const styles = {
 const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     const [documents, setDocuments] = useState([
         {
+            id: 1,
             decline: '',
             title: 'Удостоверение личности',
             status: 'Not Set',
             required: true
         },
         {
+            id: 2,
             decline: '',
             title: 'Справка 086',
             status: 'Not Set',
             required: true
         },
         {
+            id: 3,
             decline: '',
             title: '075 форма',
             status: 'Not Set',
             required: true
         },
         {
+            id: 4,
             decline: '',
             title: 'Адресная справка',
             status: 'Not Set',
             required: true
         },
         {
+            id: 5,
             decline: '',
             title: 'Лист о приеме документов в университет',
             status: 'Not Set',
             required: true
         },
         {
+            id: 6,
             decline: '',
             title: 'Заявление',
             status: 'Not Set',
             required: true
         },
         {
+            id:7,
             decline: '',
             title: 'Справка об инвалидности',
             status: 'Not Set',
             required: false
         },
         {
+            id:8,
             decline: '',
             title: 'Справка о зарплате',
             status: 'Not Set',
             required: false
         },
         {
+            id:9,
             decline: '',
             title: 'Многодетная семья',
             status: 'Not Set',
             required: false
         },
         {
+            id:10,
             decline: '',
             title: 'Family status',
             status: 'Not Set',
@@ -275,6 +285,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     }
 
     const handleUploadSuccess = (newDocument) => {
+        console.log(newDocument)
         const mergedDocuments = [...documents];
         newDocument.forEach(apiItem => {
             const existingDocumentIndex = mergedDocuments.findIndex(doc => doc.title === apiItem.title);
