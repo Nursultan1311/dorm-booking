@@ -13,25 +13,37 @@ const Main = () => {
   //     last_name: "",
   //   });
   const [universities, setUniversities] = useState([1,2,3]);
+  const [search, setSearch] = useState('')
   const [showSupport, setShowSupport] = useState();
   const [showLanguage, setShowLanguage] = useState();
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+          `https://dorm-booking.up.railway.app/api/universities/${search ? `${search}` : "undefined"}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+      );
+      const data = await response.json();
+      setUniversities(data);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+    }
+  };
+
   useEffect(() => {
-    fetch('https://dorm-booking.up.railway.app/api/universities', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-        .then((response) => {
-          return response.json()
-        }).then(data => {
-          console.log(data)
-      setUniversities(data)
-    })
-        .catch((error) => {
-          console.log(error)
-        })
-  }, [])
+    fetchData();
+  }, [search]);
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleGetStarted = () => {
+    fetchData();
+  };
   return (
     <div className="app-main">
       <Header/>
@@ -42,10 +54,14 @@ const Main = () => {
           </h2>
           <div className="welcome__input-container mt-10 mb-3">
             <input
-              placeholder="Search by University"
-              className="welcome__input"
+                placeholder="Search by University"
+                className="welcome__input"
+                value={search}
+                onChange={handleSearchChange}
             />
-            <button className="welcome__input-btn">Get Started</button>
+            <button className="welcome__input-btn" onClick={handleGetStarted}>
+              Get Started
+            </button>
           </div>
           <div className="flex gap-10">
             <div className="welcome__btn">SDU University</div>

@@ -134,7 +134,7 @@ const BookingStatus = ({application}) => {
     return (
         <div style={{border: '1px solid grey', borderRadius: '20px', width: '100%', padding: '2%', background: 'white'}}>
             <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: '14px'}}>
-                <p style={{fontWeight: 'bolder'}}>Дата подачи: {application.start}</p>
+                <p style={{fontWeight: 'bolder'}}>Creation date: {application.start}</p>
 
                 {application.status &&
                     <p style={{

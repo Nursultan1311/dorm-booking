@@ -303,7 +303,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     return (
         <div style={{...styles.card, ...newStyles.card}}>
             <input type="file" style={newStyles.fileInput} id="file" hidden/>
-            <h3>Обязательные документы:</h3>
+            <h3>Mandatory Documents:</h3>
             <ul style={newStyles.documentList}>
                 {documents.map((doc, index) => (
                     <div>
@@ -348,7 +348,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
                 ))}
             </ul>
             <br/>
-            <h3>Дополнительные документы:</h3>
+            <h3>Additional Documents:</h3>
             <ul style={newStyles.documentList}>
             {documents.map((doc, index) => (
                     <div>
@@ -482,7 +482,7 @@ const Profile = () => {
         <div>
             <AdminHeader/>
             <div style={styles.container}>
-                <h1 style={styles.h1}>Документы пользователя</h1>
+                <h1 style={styles.h1}>Documents пользователя</h1>
                 <div style={{
                     border: '1px solid grey',
                     borderRadius: '20px',
@@ -492,7 +492,7 @@ const Profile = () => {
                     background: 'white'
                 }}>
                     <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: '14px'}}>
-                        <p style={{fontWeight: 'bolder'}}>Дата подачи: {application.start}</p>
+                        <p style={{fontWeight: 'bolder'}}>Creation date: {application.start}</p>
 
                         {application.status &&
                             <p style={{
@@ -518,7 +518,7 @@ const Profile = () => {
                         style={{fontWeight: 'normal'}}>{application.university}</span></h4>
                     <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
                         <div>
-                            <span style={{fontWeight: 'bolder'}}>Убедитесь что вы заполнили и все документы до конца подачи заявок</span>
+                            <span style={{fontWeight: 'bolder'}}>Make sure you have completed all Documents before the end of the application process.</span>
 
                             <p className="popular__time2" style={{display: 'flex', alignItems: 'center'}}><img
                                 width={'4%'} src={time}/>{application.days_left / 3600 / 24} days left </p>

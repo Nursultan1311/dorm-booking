@@ -49,7 +49,8 @@ function Registration() {
         }
     }
     const [value, onChange] = useState(new Date());
-
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     return (
     <div>
         <Header/>
@@ -89,9 +90,32 @@ function Registration() {
                 <br/>
 
                 <label htmlFor="psw">Password</label>
-                <input type="password" id="psw" name="password" required/>
+                <input
+                    id="pass"
+                    type={
+                        showPassword ? "text" : "password"
+                    }
+                    value={password}
+                    onChange={(e) =>
+                        setPassword(e.target.value)
+                    }
+                />
+                <br/>
+                <br/>
 
-                <label htmlFor="psw-repeat">Confirm Password</label>
+                <input
+                    name="password"
+                    id="check"
+                    type="checkbox"
+                    value={showPassword}
+                    onChange={() =>
+                        setShowPassword((prev) => !prev)
+                    }
+                />
+                <label htmlFor="check">Show Password</label>
+                {/*<input type="password" id="psw" name="password" required/>*/}
+                {/*<p><input type="checkbox" onclick="myFunction()"/> Show password</p>*/}
+
                 <input type="password" id="psw-repeat" name="password_repeat" required/>
 
                 <input type="submit" value="Continue"/>

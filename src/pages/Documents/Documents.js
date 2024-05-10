@@ -125,42 +125,49 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     const navigate = useNavigate()
     const [documents, setDocuments] = useState([
         {
+            id: 1,
             decline: '',
             title: 'Удостоверение личности',
             status: 'Not Set',
             required: true
         },
         {
+            id: 2,
             decline: '',
             title: 'Справка 086',
             status: 'Not Set',
             required: true
         },
         {
+            id: 3,
             decline: '',
             title: '075 форма',
             status: 'Not Set',
             required: true
         },
         {
+            id: 4,
             decline: '',
             title: 'Адресная справка',
             status: 'Not Set',
             required: true
         },
         {
+            id: 5,
             decline: '',
             title: 'Лист о приеме документов в университет',
             status: 'Not Set',
             required: true
         },
         {
+            id: 6,
             decline: '',
             title: 'Заявление',
             status: 'Not Set',
             required: true
         },
         {
+            id:7,
             decline: '',
             title: 'Справка об инвалидности',
             status: 'Not Set',
@@ -242,6 +249,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
 
     const hiddenFileInput = useRef({});
     const handleClick = (id) => {
+        console.log(id)
         hiddenFileInput.current[id].click();
     };
 
@@ -251,28 +259,11 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
             handleFileUpload(file, id, title);
         }
     };
-    (function (p, a, y, b, o, x) {
-        o = p.createElement(a);
-        x = p.getElementsByTagName(a)[0];
-        o.async = 1;
-        o.src = 'https://cdn.freedompay.money/widget/pbwidget.js?' + 1 * new Date();
-        x.parentNode.insertBefore(o, x);
-    })(document, 'script');
-
-    const sendApplication = () => {
-        for (let i = 0; i < documents.length; ++i) {
-            if (documents[i].required && documents[i].status != 'approved') {
-                alert("All necessary documents should be uploaded before making request")
-                return
-            }
-        }
-        navigate('/pick_place')
-    }
 
     return (
         <div style={{...styles.card, ...newStyles.card}}>
             <input type="file" style={newStyles.fileInput} id="file" hidden/>
-            <h3>Обязательные документы:</h3>
+            <h3>Mandatory Documents:</h3>
             <ul style={newStyles.documentList}>
                 {documents.map((doc, index) => (
                     <div>
@@ -302,6 +293,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
                                         {doc.decline}
                                     </span>}
                                 </div>
+                                {doc.title}
                                 {doc.status !== 'approved' ? (<div>
                                     <button style={newStyles.uploadButton} onClick={() => handleClick(doc.id)}>
                                         <FaUpload style={{marginRight: '10px'}}/>
@@ -320,7 +312,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
                 ))}
             </ul>
             <br/>
-            <h3>Дополнительные документы:</h3>
+            <h3>Additional Documents:</h3>
             <ul style={newStyles.documentList}>
                 {documents.map((doc, index) => (
                     <div>
@@ -372,11 +364,11 @@ const Profile = () => {
         <div>
             <Header/>
             <div style={styles.container}>
-                <h1 style={styles.h1}>Личный кабинет</h1>
+                <h1 style={styles.h1}>Personal account </h1>
                 <nav style={styles.nav}>
-                    <Link to="/profile" style={styles.navItem}>Личная информация</Link>
-                    <Link to="/documents" style={styles.navItemMain}>Документы</Link>
-                    <Link to="/bookings" style={styles.navItem}>Бронь</Link>
+                    <Link to="/profile" style={styles.navItem}>Personal information </Link>
+                    <Link to="/documents" style={styles.navItemMain}>Documents</Link>
+                    <Link to="/bookings" style={styles.navItem}>Booking</Link>
                 </nav>
                 <div style={styles.personalCardInfo}>
                     <DocumentUploadCard onUploadFailure={handleUploadFailure}/>

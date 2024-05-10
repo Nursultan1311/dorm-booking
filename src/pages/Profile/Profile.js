@@ -131,15 +131,16 @@ const PersonalInfoCard = () => {
         localStorage.removeItem("accessToken")
         navigate('/login')
     }
+    const [showPassword, setShowPassword] = useState(false);
     return (
         <div style={styles.card}>
             <div style={styles.cardHeader}>
-                Редактировать фотографию профиля
+                Edit profile information
             </div>
             <hr/>
 
             <div style={{...styles.cardContent, ...styles.clear}}>
-                Name Surname
+                Name
                 {editMode.first_name ? (
                     <span onClick={() => saveChanges('first_name')} style={styles.editLink}>Сохранить</span>
                 ) : (
@@ -156,7 +157,30 @@ const PersonalInfoCard = () => {
                         onChange={(e) => handleEditChange('first_name', e.target.value)}
                     />
                 ) : (
-                    <p style={styles.p}>{user.first_name + " " + user.last_name}</p>
+                    <p style={styles.p}>{user.first_name}</p>
+                )}
+            </div>
+            <hr/>
+
+            <div style={{...styles.cardContent, ...styles.clear}}>
+                Surname
+                {editMode.last_name ? (
+                    <span onClick={() => saveChanges('last_name')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('last_name')} style={styles.editLink}>Редактировать</span>
+                )}
+
+            </div>
+
+            <div style={styles.cardContent}>
+                {editMode.last_name ? (
+                    <input
+                        type="text"
+                        value={editData.last_name}
+                        onChange={(e) => handleEditChange('last_name', e.target.value)}
+                    />
+                ) : (
+                    <p style={styles.p}>{user.last_name}</p>
                 )}
             </div>
             <hr/>
@@ -167,7 +191,7 @@ const PersonalInfoCard = () => {
             <div style={styles.cardContent}>
                 <p style={styles.p}>Мужской</p>
             </div>
-            f
+
             <hr/>
             <div style={{...styles.cardContent, ...styles.clear}}>
                 Email address
@@ -235,11 +259,51 @@ const PersonalInfoCard = () => {
                 )}
             </div>
             <hr/>
-            <div style={styles.cardContent}>
-                <button style={styles.p} onClick={exit}>Выйти с аккаунта</button>
+            <div style={{...styles.cardContent, ...styles.clear}}>
+                Password
+                {editMode.password ? (
+                    <span onClick={() => saveChanges('password')} style={styles.editLink}>Сохранить</span>
+                ) : (
+                    <span onClick={() => toggleEdit('password')} style={styles.editLink}>Редактировать</span>
+                )}
+
             </div>
+
+            <div style={styles.cardContent}>
+                {editMode.password ? (
+                        <>
+                            <input
+                                id="pass"
+                                type={
+                                    showPassword ? "text" : "password"
+                                }
+                                value={editData.password}
+                                onChange={(e) => handleEditChange('password', e.target.value)}
+                            />
+
+
+                            <input
+                                name="password"
+                                id="check"
+                                type="checkbox"
+                                value={showPassword}
+                                onChange={() =>
+                                    setShowPassword((prev) => !prev)
+                                }
+                            />
+                            <label htmlFor="check">Show Password</label>
+                        </>
+                    ) : (
+                    <p style={styles.p}></p>
+            )}
         </div>
-    );
+    <hr/>
+    <div style={styles.cardContent}>
+        <button style={styles.p} onClick={exit}>Выйти с аккаунта</button>
+    </div>
+</div>
+)
+    ;
 };
 
 const Profile = () => {
@@ -249,12 +313,12 @@ const Profile = () => {
 
             <div style={styles.container}>
                 <h1 style={styles.h1}>
-                    Личный кабинет
+                    Personal account 
                 </h1>
                 <nav style={styles.nav}>
-                    <Link to="/profile" style={styles.navItemMain}>Личная информация</Link>
-                    <Link to="/documents" style={styles.navItem}>Документы</Link>
-                    <Link to="/bookings" style={styles.navItem}>Бронь</Link>
+                    <Link to="/profile" style={styles.navItemMain}>Personal information </Link>
+                    <Link to="/documents" style={styles.navItem}>Documents</Link>
+                    <Link to="/bookings" style={styles.navItem}>Booking</Link>
                 </nav>
                 <div style={styles.personalCardInfo}>
                     <PersonalInfoCard/>

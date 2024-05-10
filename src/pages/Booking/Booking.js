@@ -112,7 +112,7 @@ const BookingStatus = ({ onUploadSuccess, onUploadFailure }) => {
             { application.chance != -1 ? (
                     <div style={{border: '1px solid grey', borderRadius: '20px', width: '100%', padding: '2%', background: 'white'}}>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: '14px'}}>
-                            <p style={{fontWeight: 'bolder'}}>Дата подачи: {application.start}</p>
+                            <p style={{fontWeight: 'bolder'}}>Creation date: {application.start}</p>
 
                             {application.status &&
                                 <p style={{
@@ -138,7 +138,7 @@ const BookingStatus = ({ onUploadSuccess, onUploadFailure }) => {
                             style={{fontWeight: 'normal'}}>{application.university}</span></h4>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
                             <div>
-                                <span style={{fontWeight: 'bolder'}}>Убедитесь что вы заполнили и все документы до конца подачи заявок</span>
+                                <span style={{fontWeight: 'bolder'}}>Make sure you have completed all Documents before the end of the application process.</span>
 
                                 <p className="popular__time2" style={{display: 'flex', alignItems: 'center'}}><img
                                     width={'4%'} src={time}/>{application.days_left / 3600 / 24} days left </p>
@@ -166,11 +166,11 @@ const Booking = () => {
         <div>
             <Header/>
             <div style={styles.container}>
-                <h1 style={styles.h1}>Личный кабинет</h1>
+                <h1 style={styles.h1}>Personal account </h1>
                 <nav style={styles.nav}>
-                    <Link to="/profile" style={styles.navItem}>Личная информация</Link>
-                    <Link to="/documents" style={styles.navItem}>Документы</Link>
-                    <Link to="/bookings" style={styles.navItemMain}>Бронь</Link>
+                    <Link to="/profile" style={styles.navItem}>Personal information </Link>
+                    <Link to="/documents" style={styles.navItem}>Documents</Link>
+                    <Link to="/bookings" style={styles.navItemMain}>Booking</Link>
                 </nav>
                 <div style={styles.personalCardInfo}>
                     <BookingStatus/>
