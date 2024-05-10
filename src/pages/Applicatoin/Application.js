@@ -401,7 +401,7 @@ const StatusChangeModal = ({ isOpen, onClose, documentTitle, documentId }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        fetch('https://dorm-booking.up.railway.app/api/document/update/' + documentId, {
+        await fetch('https://dorm-booking.up.railway.app/api/document/update/' + documentId, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
