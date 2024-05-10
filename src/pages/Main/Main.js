@@ -5,6 +5,7 @@ import photo from "./popular-card.png";
 import providers from "./providers.png";
 import Footer from "../../components/Footer/Footer";
 import {Link} from "react-router-dom";
+import Modal from "../Modal/Moda";
 const Main = () => {
   //   const navigate = useNavigate();
   //   let [user, setUser] = useState({
@@ -120,13 +121,14 @@ const Main = () => {
               application below and we will contact you to discuss details and
               terms of cooperation. Thank you for your interest in our site!
             </p>
-            <button className="providers__btn">Partner with us</button>
-          </div>
-          <div className="w-[30%]">
-            <img className="providers__img" src={providers} alt="providers"/>
-          </div>
+            <button className="providers__btn" onClick={() => setShowSupport(true)}>Partner with us</button>
+            <Modal isOpen={showSupport} onClose={() => setShowSupport(false)}/>
+        </div>
+        <div className="w-[30%]">
+          <img className="providers__img" src={providers} alt="providers"/>
         </div>
       </div>
+    </div>
       <Footer/>
     </div>
   );
