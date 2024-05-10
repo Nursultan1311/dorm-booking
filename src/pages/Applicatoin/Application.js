@@ -476,7 +476,33 @@ const Profile = () => {
                 setApplication(data)
             })
             .catch(error => console.error('Error fetching documents', error));
+        fetchUserData()
     }, []);
+    const fetchUserData = () => {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'jwt': localStorage.getItem('accessToken')})
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('User data not available');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Check if the user is an admin
+                if (!data.isAdmin) {
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+                // Handle error (e.g., show an error message)
+            });
+    };
 
     return (
         <div>

@@ -1,10 +1,9 @@
 // ... other imports ...
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import React, {useEffect, useState} from "react";
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
-import Header from "../../components/Header/Header";
 import time from "./img.png"
 import AdminHeader from "../../components/HeaderAdmin/Header";
 
@@ -238,6 +237,8 @@ const Admin = () => {
         approved: 0,
         declined: 0,
     });
+    const navigate = useNavigate()
+
     const [applications, setApplications] = useState([{}])
     useEffect(() => {
         fetch('https://dorm-booking.up.railway.app/api/applications', {
@@ -259,7 +260,34 @@ const Admin = () => {
                 });
             })
             .catch(error => console.error('Error fetching documents', error));
+        fetchUserData()
     }, []);
+
+    const fetchUserData = () => {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'jwt': localStorage.getItem('accessToken')})
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('User data not available');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Check if the user is an admin
+                if (!data.isAdmin) {
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+                // Handle error (e.g., show an error message)
+            });
+    };
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prev => ({ ...prev, [name]: value }));
