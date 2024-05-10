@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import React, { useEffect, useRef, useState } from "react";
 import { FaUpload } from "react-icons/fa";
@@ -262,14 +262,10 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     useEffect(() => {
         loadDocuments()
     }, []);
+    let { id } = useParams();
+
     const loadDocuments = () => {
-        fetch('https://dorm-booking.up.railway.app/api/documents', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({'jwt': localStorage.getItem('accessToken')})
-        })
+        fetch('https://dorm-booking.up.railway.app/api/documents/' + id)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -463,6 +459,7 @@ const StatusChangeModal = ({ isOpen, onClose, documentTitle, documentId }) => {
 
 
 const Profile = () => {
+    let { id} = useParams()
     const handleUploadFailure = (error) => {
         console.error('Error uploading file:', error);
     };
@@ -482,13 +479,7 @@ const Profile = () => {
         ],
     };
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/application', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({'jwt': localStorage.getItem('accessToken')})
-        })
+        fetch('https://dorm-booking.up.railway.app/api/application/' + id)
             .then(response => response.json())
             .then(data => {
                 console.log(data);

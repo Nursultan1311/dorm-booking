@@ -112,12 +112,13 @@ function Registration() {
                         setShowPassword((prev) => !prev)
                     }
                 />
+                <label htmlFor="check">Show Password</label>
+
                 {/*<input type="password" id="psw" name="password" required/>*/}
                 {/*<p><input type="checkbox" onclick="myFunction()"/> Show password</p>*/}
 
                 <input type="password" id="psw-repeat" name="password_repeat" required/>
 
-                <label htmlFor="check">Show Password</label>
                 <input type="submit" value="Continue"/>
                 <input
                     id="check"
