@@ -239,6 +239,24 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
             title: 'Справка об инвалидности',
             status: 'Not Set',
             required: false
+        },
+        {
+            decline: '',
+            title: 'Справка о зарплате',
+            status: 'Not Set',
+            required: false
+        },
+        {
+            decline: '',
+            title: 'Многодетная семья',
+            status: 'Not Set',
+            required: false
+        },
+        {
+            decline: '',
+            title: 'Family status',
+            status: 'Not Set',
+            required: false
         }
     ]);
     useEffect(() => {

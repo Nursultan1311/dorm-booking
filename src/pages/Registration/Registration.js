@@ -32,7 +32,7 @@ function Registration() {
         e.preventDefault();
         // you will need to use FormData instead of a regular object
         const formData = new FormData(formRef.current);
-
+        formData.set('password', password)
         try {
             const response = await fetch('https://dorm-booking.up.railway.app/api/registration-request', {
                 method: 'POST',
