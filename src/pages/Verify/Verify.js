@@ -55,7 +55,7 @@ function Contract() {
                 <input className="code-input" name="5" id="5" type="text" maxLength="1"/>
                 <input className="code-input" name="6" id="6" type="text" maxLength="1"/>
             </div>
-                <button type="submit">Continue</button>
+                <button type="submit" style={{background: '#212138'}}>Continue</button>
         </form>
         <Footer/>
 

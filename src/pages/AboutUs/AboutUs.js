@@ -185,7 +185,27 @@ const AboutUs = () => {
             </div>
         </div>
             <Reviews/>
-            <img style={{padding: '10%', paddingTop: '0'}} src={feedback}/>
+            <div className="feedback-form-container">
+                <h2 className="feedback-title">Your Feedback</h2>
+                <div className="feedback-buttons h-100 align-items-center gap-5">
+                    <button className="feedback-button active">Suggestion</button>
+                    <div className="rating-stars h-100 align-items-center">
+                        <span className="star">&#9733;</span>
+                        <span className="star">&#9733;</span>
+                        <span className="star">&#9733;</span>
+                        <span className="star">&#9733;</span>
+                        <span className="star half">&#9733;</span>
+                    </div>
+                    <button className="feedback-button">Compliment</button>
+                </div>
+
+                <div className="d-flex gap-3 align-items-center h-100">
+                    <input className="feedback-textarea w-80 h-100"
+                              placeholder="Please leave your feedback here"></input>
+                    <button className="feedback-submit-button">Submit</button>
+                </div>
+
+            </div>
             <Footer/>
         </>
     );

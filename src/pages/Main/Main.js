@@ -56,7 +56,7 @@ const Main = () => {
           <div className="welcome__input-container mt-10 mb-3">
             <input
                 placeholder="Search by University"
-                className="welcome__input"
+                className="welcome__input w-100"
                 value={search}
                 onChange={handleSearchChange}
             />

@@ -61,7 +61,7 @@ function Login() {
     return (
         <div>
             <Header/>
-            <div className="container mt-5 mb-5">
+            <div className="container mt-5 mb-5 justify-content-around d-flex">
                 <form className="main" onSubmit={handleSubmit} ref={formRef}>
                     <h1>Login</h1>
                     <p>Don’t have an account? Sign up <a href="/registration">here</a>!</p>
@@ -71,7 +71,7 @@ function Login() {
                     <label htmlFor="psw">Password</label>
                     <input type="password" id="psw" name="password" required/>
                     <p style={{color:'red'}}>{errorMessage}</p>
-                    <input type="submit" value="Continue"/>
+                    <input type="submit" style={{background: '#212138'}} value="Continue"/>
                 </form>
             </div>
             <Footer/>

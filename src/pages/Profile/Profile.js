@@ -83,7 +83,7 @@ const PersonalInfoCard = () => {
     const [editData, setEditData] = useState({ email: "", first_name: "", last_name: "" });
 
     useEffect(() => {
-        fetchUserData();
+        fetchUserData().then(r => {});
     }, []);
 
     const fetchUserData = async () => {
@@ -133,7 +133,7 @@ const PersonalInfoCard = () => {
     }
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div style={styles.card}>
+        <div style={styles.card} className='container w-90'>
             <div style={styles.cardHeader}>
                 Edit profile information
             </div>
@@ -294,12 +294,12 @@ const PersonalInfoCard = () => {
                             <label htmlFor="check">Show Password</label>
                         </>
                     ) : (
-                    <p style={styles.p}></p>
+                    <p style={{background: '#212138'}}></p>
             )}
         </div>
     <hr/>
     <div style={styles.cardContent}>
-        <button style={styles.p} onClick={exit}>Выйти с аккаунта</button>
+        <button style={{background: '#212138'}} onClick={exit}>Выйти с аккаунта</button>
     </div>
 </div>
 )
