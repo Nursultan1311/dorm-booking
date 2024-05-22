@@ -12,7 +12,7 @@ function AdminHeader() {
 
     function exit(){
         localStorage.removeItem("accessToken")
-        navigate('/')
+        navigate('/login')
     }
 
     useEffect(() => {
