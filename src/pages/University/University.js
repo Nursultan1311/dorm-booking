@@ -217,11 +217,11 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'https://dorm-booking.up.railway.app/' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
                         </SplideSlide>
                         {university.images?.map((el, index) => (
                             <SplideSlide key={index+1}>
-                                <img width="100%" src={'https://dorm-booking.up.railway.app/' + el} alt="Slide"/>
+                                <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
                             </SplideSlide>
                         ))}
                     </Splide>
@@ -241,7 +241,7 @@ const University = () => {
                             {/*{university.images[0]}*/}
                             {university.images?.map((el, index) => (
                                 <SplideSlide key={index}>
-                                    <img width="100%" src={'https://dorm-booking.up.railway.app/' + el} alt="Slide"/>
+                                    <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
                                 </SplideSlide>
                             ))}
                         </Splide>
