@@ -11,7 +11,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/user', {
+        fetch('https://dorm-booking.up.railway.app//api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function Login() {
         const email = formRef.current.login.value
         const password = formRef.current.password.value
         try {
-            fetch('https://dorm-booking.up.railway.app/api/login', {
+            fetch('https://dorm-booking.up.railway.app//api/login', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

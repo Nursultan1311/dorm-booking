@@ -88,7 +88,7 @@ const PersonalInfoCard = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await fetch('https://dorm-booking.up.railway.app/api/user', {
+            const response = await fetch('https://dorm-booking.up.railway.app//api/user', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 'jwt': localStorage.getItem('accessToken') })
@@ -112,7 +112,7 @@ const PersonalInfoCard = () => {
 
     const saveChanges = async (field) => {
         try {
-            const response = await fetch(`https://dorm-booking.up.railway.app/api/user/update/${field}/`, {
+            const response = await fetch(`https://dorm-booking.up.railway.app//api/user/update/${field}/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ [field]: editData[field], 'jwt': localStorage.getItem('accessToken') })

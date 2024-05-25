@@ -14,7 +14,7 @@ function Registration() {
         setFile(URL.createObjectURL(e.target.files[0]));
     }
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/user', {
+        fetch('https://dorm-booking.up.railway.app//api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function Registration() {
         const formData = new FormData(formRef.current);
         formData.set('password', password)
         try {
-            const response = await fetch('https://dorm-booking.up.railway.app/api/registration-request', {
+            const response = await fetch('https://dorm-booking.up.railway.app//api/registration-request', {
                 method: 'POST',
                 body: formData,
             });

@@ -1,21 +1,21 @@
 // ... other imports ...
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, Route, Routes} from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import React, {useEffect, useState} from "react";
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 import time from "./img.png"
 import AdminHeader from "../../components/HeaderAdmin/Header";
+import Suggestions from "../Suggestions/Suggestions";  // Create this component
+import Partners from "../Partners/Partners";  // Create this component
 
 const styles = {
     container: {
         color: '#333',
         width: '100%',
-        // padding: '0 5% 5% 5%',
         maxWidth: '100%',
     },
     h1: {
-        // padding: '0 5% 5% 5%',
         paddingLeft: '5%',
         fontSize: '30px',
         fontWeight: 'bold',
@@ -54,7 +54,6 @@ const styles = {
     card: {
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         padding: '20px',
-        // margin: '50px',
         background: '#fff',
         borderRadius: '15px'
     },
@@ -114,6 +113,25 @@ const styles = {
     activeStatusButton: {
         backgroundColor: '#46C295',
         color: 'white',
+    },
+    tabs: {
+        display: 'flex',
+        gap: '20px',
+        padding: '10px 20px',
+        borderBottom: '2px solid #ddd',
+        marginBottom: '20px',
+    },
+    tabItem: {
+        padding: '10px 15px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        color: '#333',
+        borderRadius: '5px 5px 0 0',
+    },
+    activeTabItem: {
+        border: '2px solid #ddd',
+        borderBottom: '2px solid white',
+        backgroundColor: 'white',
     }
 };
 
@@ -180,6 +198,7 @@ const BookingStatus = ({application}) => {
         </div>
     );
 };
+
 const statusStyles = {
     display: 'flex',
     width: '100%',
@@ -223,8 +242,6 @@ const StatusIndicator = ({ approved, declined }) => {
     );
 };
 
-// ... other components ...
-
 const Admin = () => {
     const [filters, setFilters] = useState({
         time: '',
@@ -241,7 +258,7 @@ const Admin = () => {
 
     const [applications, setApplications] = useState([{}])
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/applications', {
+        fetch('https://dorm-booking.up.railway.app//api/applications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -264,7 +281,7 @@ const Admin = () => {
     }, []);
 
     const fetchUserData = () => {
-        fetch('https://dorm-booking.up.railway.app/api/user', {
+        fetch('https://dorm-booking.up.railway.app//api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -298,61 +315,72 @@ const Admin = () => {
     };
 
     const filteredApplications = applications.filter(app => {
-        return (filters.status === '' || app.status === filters.status) &&
+        return (filters.status === '' || app.status === (filters.status === 'Approved')) &&
             (filters.firstName === '' || app.user.name.includes(filters.firstName)) &&
             (filters.surname === '' || app.user.surname.includes(filters.surname)) &&
             (filters.university === '' || app.university.includes(filters.university));
     });
+
     return (
         <div>
             <AdminHeader/>
             <StatusIndicator approved={statusCounts.approved} declined={statusCounts.declined}/>
-            <div style={styles.filterContainer}>
-                <div style={styles.statusColumn}>
-                    {['In Processing', 'Approved'].map(status => (
-                        <button
-                            key={status}
-                            style={filters.status === status ? {...styles.statusButton, ...styles.activeStatusButton} : styles.statusButton}
-                            onClick={() => handleStatusChange(status==='Approved')}
-                        >
-                            {status}
-                        </button>
-                    ))}
-                </div>
-                <div style={styles.inputContainer}>
-                    <input
-                        style={styles.inputField}
-                        name="firstName"
-                        type="text"
-                        placeholder="First Name"
-                        value={filters.firstName}
-                        onChange={handleFilterChange}
-                    />
-                    <input
-                        style={styles.inputField}
-                        name="surname"
-                        type="text"
-                        placeholder="Surname"
-                        value={filters.surname}
-                        onChange={handleFilterChange}
-                    />
-                    <input
-                        style={styles.inputField}
-                        name="university"
-                        type="text"
-                        placeholder="University"
-                        value={filters.university}
-                        onChange={handleFilterChange}
-                    />
-                </div>
+            <div style={styles.tabs}>
+                <Link to="/admin" className="tab-item"
+                      style={window.location.pathname === "/admin" ? styles.activeTabItem : {}}>Documents</Link>
+                <Link to="/suggestions" className="tab-item"
+                      style={window.location.pathname === "/suggestions" ? styles.activeTabItem : {}}>Suggestions</Link>
+                <Link to="/partners" className="tab-item"
+                      style={window.location.pathname === "/partners" ? styles.activeTabItem : {}}>Partners</Link>
             </div>
-            <div style={styles.container}>
-                {filteredApplications.map((el, index) => (
-                    <div key={index} style={styles.personalCardInfo}>
-                        <BookingStatus application={el}/>
+                <div>
+                    <div style={styles.filterContainer}>
+                        <div style={styles.statusColumn}>
+                            {['In Processing', 'Approved'].map(status => (
+                                <button
+                                    key={status}
+                                    style={filters.status === status ? {...styles.statusButton, ...styles.activeStatusButton} : styles.statusButton}
+                                    onClick={() => handleStatusChange(status)}
+                                >
+                                    {status}
+                                </button>
+                            ))}
+                        </div>
+                        <div style={styles.inputContainer}>
+                            <input
+                                style={styles.inputField}
+                                name="firstName"
+                                type="text"
+                                placeholder="First Name"
+                                value={filters.firstName}
+                                onChange={handleFilterChange}
+                            />
+                            <input
+                                style={styles.inputField}
+                                name="surname"
+                                type="text"
+                                placeholder="Surname"
+                                value={filters.surname}
+                                onChange={handleFilterChange}
+                            />
+                            <input
+                                style={styles.inputField}
+                                name="university"
+                                type="text"
+                                placeholder="University"
+                                value={filters.university}
+                                onChange={handleFilterChange}
+                            />
+                        </div>
                     </div>
-                ))}
-            </div>
+                    <div style={styles.container}>
+                        {filteredApplications.map((el, index) => (
+                            <div key={index} style={styles.personalCardInfo}>
+                                <BookingStatus application={el}/>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             <Footer/>
         </div>
     );

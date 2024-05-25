@@ -16,7 +16,7 @@ function AdminHeader() {
     }
 
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app/api/user', {
+        fetch('https://dorm-booking.up.railway.app//api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

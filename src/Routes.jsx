@@ -14,6 +14,8 @@ import Privacy from "./pages/Privacy/Privacy";
 import PlacePicker from "./pages/PlacePicker/PlacePicker";
 import Admin from "./pages/Admin/Admin";
 import Application from "./pages/Applicatoin/Application";
+import Suggestions from "./pages/Suggestions/Suggestions";
+import Partners from "./pages/Partners/Partners";
 
 export const router = createBrowserRouter([
         {
@@ -71,6 +73,14 @@ export const router = createBrowserRouter([
         {
             path: "/change/:id",
             element: <Application/>
+        },
+        {
+            path: "/suggestions",
+            element: <Suggestions/>
+        },
+        {
+            path: "/partners",
+            element: <Partners/>
         }
     ]
 );

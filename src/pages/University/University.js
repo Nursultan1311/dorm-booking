@@ -148,7 +148,7 @@ const University = () => {
                 }, {
                     onSuccess: (options) => {
                         console.log(slug)
-                        fetch('https://dorm-booking.up.railway.app/api/approve', {
+                        fetch('https://dorm-booking.up.railway.app//api/approve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ const University = () => {
         images: []
     })
     useEffect( () => {
-        fetch('https://dorm-booking.up.railway.app/api/university/' + id)
+        fetch('https://dorm-booking.up.railway.app//api/university/' + id)
             .then((response) => {
                 return response.json()
             }).then(async data => {
@@ -217,11 +217,11 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app/' + university.image} alt="Slide"/>
                         </SplideSlide>
                         {university.images?.map((el, index) => (
                             <SplideSlide key={index+1}>
-                                <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
+                                <img width="100%" src={'https://dorm-booking.up.railway.app/' + el} alt="Slide"/>
                             </SplideSlide>
                         ))}
                     </Splide>
@@ -241,7 +241,7 @@ const University = () => {
                             {/*{university.images[0]}*/}
                             {university.images?.map((el, index) => (
                                 <SplideSlide key={index}>
-                                    <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
+                                    <img width="100%" src={'https://dorm-booking.up.railway.app/' + el} alt="Slide"/>
                                 </SplideSlide>
                             ))}
                         </Splide>
