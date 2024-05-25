@@ -275,7 +275,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
     let { id } = useParams();
 
     const loadDocuments = () => {
-        fetch('https://dorm-booking.up.railway.app//api/documents/' + id)
+        fetch('https://dorm-booking.up.railway.app/api/documents/' + id)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -339,7 +339,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
                                     <div style={newStyles.documentInfo}>
                                         {doc.title}{doc.required && <span style={{color: 'red'}}> *</span>}
                                         <br/>
-                                        <a href={'https://dorm-booking.up.railway.app//media/' + doc.file}>{doc.file}</a>
+                                        <a href={'https://dorm-booking.up.railway.app/media/' + doc.file}>{doc.file}</a>
                                     </div>
 
 
@@ -384,7 +384,7 @@ const DocumentUploadCard = ({ onUploadSuccess, onUploadFailure }) => {
                                     <div style={newStyles.documentInfo}>
                                         {doc.title}{doc.required && <span style={{color: 'red'}}> *</span>}
                                         <br/>
-                                        <a href={'https://dorm-booking.up.railway.app//media/' + doc.file}>{doc.file}</a>
+                                        <a href={'https://dorm-booking.up.railway.app/media/' + doc.file}>{doc.file}</a>
                                     </div>
                                     <span style={{
                                         ...newStyles.statusLabel,
@@ -426,7 +426,7 @@ const StatusChangeModal = ({ isOpen, onClose, documentTitle, documentId }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await fetch('https://dorm-booking.up.railway.app//api/document/update/' + documentId, {
+        await fetch('https://dorm-booking.up.railway.app/api/document/update/' + documentId, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -490,7 +490,7 @@ const Profile = () => {
         ],
     };
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app//api/application/' + id)
+        fetch('https://dorm-booking.up.railway.app/api/application/' + id)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -500,7 +500,7 @@ const Profile = () => {
         fetchUserData()
     }, []);
     const fetchUserData = () => {
-        fetch('https://dorm-booking.up.railway.app//api/user', {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

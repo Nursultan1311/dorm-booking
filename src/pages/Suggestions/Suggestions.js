@@ -125,7 +125,7 @@ const Suggestions = () => {
     });
 
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app//api/suggestions', {
+        fetch('https://dorm-booking.up.railway.app/api/suggestions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const Suggestions = () => {
             })
             .catch(error => console.error('Error fetching suggestions', error));
 
-        fetch('https://dorm-booking.up.railway.app//api/applications', {
+        fetch('https://dorm-booking.up.railway.app/api/applications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ const Suggestions = () => {
     const navigate = useNavigate();
 
     const fetchUserData = () => {
-        fetch('https://dorm-booking.up.railway.app//api/user', {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

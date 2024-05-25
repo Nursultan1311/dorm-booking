@@ -20,7 +20,7 @@ const Main = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-          `https://dorm-booking.up.railway.app//api/universities/${search ? `${search}` : "undefined"}`,
+          `https://dorm-booking.up.railway.app/api/universities/${search ? `${search}` : "undefined"}`,
           {
             method: "GET",
             headers: {

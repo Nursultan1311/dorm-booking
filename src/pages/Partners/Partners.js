@@ -175,7 +175,7 @@ const Partners = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app//api/partners',{
+        fetch('https://dorm-booking.up.railway.app/api/partners',{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -186,7 +186,7 @@ const Partners = () => {
                 setPartners(data);
             })
             .catch(error => console.error('Error fetching partners', error));
-        fetch('https://dorm-booking.up.railway.app//api/applications', {
+        fetch('https://dorm-booking.up.railway.app/api/applications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ const Partners = () => {
         declined: 0,
     });
     const fetchUserData = () => {
-        fetch('https://dorm-booking.up.railway.app//api/user', {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

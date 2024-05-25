@@ -258,7 +258,7 @@ const Admin = () => {
 
     const [applications, setApplications] = useState([{}])
     useEffect(() => {
-        fetch('https://dorm-booking.up.railway.app//api/applications', {
+        fetch('https://dorm-booking.up.railway.app/api/applications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -281,7 +281,7 @@ const Admin = () => {
     }, []);
 
     const fetchUserData = () => {
-        fetch('https://dorm-booking.up.railway.app//api/user', {
+        fetch('https://dorm-booking.up.railway.app/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -148,7 +148,7 @@ const University = () => {
                 }, {
                     onSuccess: (options) => {
                         console.log(slug)
-                        fetch('https://dorm-booking.up.railway.app//api/approve', {
+                        fetch('https://dorm-booking.up.railway.app/api/approve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ const University = () => {
         images: []
     })
     useEffect( () => {
-        fetch('https://dorm-booking.up.railway.app//api/university/' + id)
+        fetch('https://dorm-booking.up.railway.app/api/university/' + id)
             .then((response) => {
                 return response.json()
             }).then(async data => {
