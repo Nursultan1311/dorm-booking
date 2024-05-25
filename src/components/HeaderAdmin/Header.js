@@ -93,7 +93,7 @@ function AdminHeader() {
                     )}
                 </div>
             </div>
-            <hr style={{width: "200%", marginLeft: "-50%"}} />
+            <hr style={{width: "100%"}} />
         </div>
     );
 }
