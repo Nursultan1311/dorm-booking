@@ -83,7 +83,7 @@ const Main = () => {
         <div className="popular__list">
           {universities.map((el) => (
             <div className="popular__card">
-              <div className="popular__time">7 day 23:59:59</div>
+              <div className="popular__time">{el.days_left / 3600 / 24} days left</div>
               <div className="popular__img">
                 <img src={'https://dorm-booking.up.railway.app' + el.image}  alt="popular card"/>
               </div>

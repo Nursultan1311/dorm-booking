@@ -295,7 +295,7 @@ const University = () => {
                     <p className="location"><img src={calendar}/>Start date: {university.start} <br/> End
                         date: {university.end}.</p>
                     <div className="price__card">
-                        <div className="popular__time">7 day 23:59:59</div>
+                        <div className="popular__time">{university.days_left / 3600 / 24} days left</div>
                         <div className="price__info">
                             <div className="price">
                                 <p>Rent from</p>
