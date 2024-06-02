@@ -10,10 +10,31 @@ import linkedin from './img.png'
 import inst from './img_1.png'
 import whatsapp from './img_2.png'
 import Reviews from "../../components/Reviews/Reviews";
-import feedback from "./img_3.png"
+import axios from 'axios';
+import {useState} from "react";
+
 
 
 const AboutUs = () => {
+    const [feedbackText, setFeedbackText] = useState('');
+
+    const handleFeedbackSubmit = async () => {
+        try {
+            const feedback = {
+                jwt: localStorage.getItem('accessToken'),
+                text: feedbackText,
+                rating: 5,
+            };
+            const response = await axios.post('https://dorm-booking.up.railway.app/api/submit-suggestion', feedback);
+            console.log(response.data);
+            setFeedbackText('');
+            alert('Feedback submitted successfully!');
+        } catch (error) {
+            console.error('Error submitting feedback:', error);
+            alert('Please login before submitting');
+        }
+    };
+
     return (
         <>
             <Header/>
@@ -200,9 +221,13 @@ const AboutUs = () => {
                 </div>
 
                 <div className="d-flex gap-3 align-items-center h-100">
-                    <input className="feedback-textarea w-80 h-100"
-                              placeholder="Please leave your feedback here"></input>
-                    <button className="feedback-submit-button">Submit</button>
+                    <input
+                        className="feedback-textarea w-80 h-100"
+                        placeholder="Please leave your feedback here"
+                        value={feedbackText}
+                        onChange={(e) => setFeedbackText(e.target.value)}
+                    />
+                    <button className="feedback-submit-button" onClick={handleFeedbackSubmit}>Submit</button>
                 </div>
 
             </div>
