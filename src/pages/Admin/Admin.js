@@ -258,6 +258,7 @@ const Admin = () => {
 
     const [applications, setApplications] = useState([{}])
     useEffect(() => {
+        fetchUserData()
         fetch('https://dorm-booking.up.railway.app/api/applications', {
             method: 'POST',
             headers: {
@@ -277,7 +278,6 @@ const Admin = () => {
                 });
             })
             .catch(error => console.error('Error fetching documents', error));
-        fetchUserData()
     }, []);
 
     const fetchUserData = () => {
@@ -296,13 +296,13 @@ const Admin = () => {
             })
             .then(data => {
                 // Check if the user is an admin
-                if (!data.isAdmin) {
+                if (!data.is_superuser) {
                     navigate("/");
                 }
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
-                // Handle error (e.g., show an error message)
+                navigate("/");
             });
     };
     const handleFilterChange = (e) => {
