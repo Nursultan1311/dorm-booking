@@ -3,9 +3,10 @@ import React, {useEffect, useState} from "react";
 import Footer from "../../components/Footer/Footer";
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import location from "./location.png"
-import calendar from "./calendar.png"
-import facilities from "./facilities.png"
+import location from "./location.png";
+import calendar from "./calendar.png";
+import checkmark from "./tg_image_3453931907.jpeg";
+
 import {useParams} from "react-router-dom";
 import SeatPicker from "react-seat-picker";
 
@@ -24,8 +25,8 @@ const University = () => {
         params,
         removeCb
     ) => {
-        setPlace(true)
-        setLoading(true)
+        setPlace(true);
+        setLoading(true);
         if (removeCb) {
             console.log(
                 `Removed seat ${params.number}, row ${params.row}, id ${params.id}`
@@ -35,8 +36,7 @@ const University = () => {
         console.log(`Added seat ${number}, row ${row}, id ${id} ${place}`);
         const newTooltip = `tooltip for id-${id} added by callback`;
         addCb(row, number, id, newTooltip);
-        setLoading(false)
-
+        setLoading(false);
     };
 
     const addSeatCallback = ({ row, number, id }, addCb) => {
@@ -111,8 +111,8 @@ const University = () => {
         ]
     ];
 
-    let slug = ''
-    const [place, setPlace] = useState(false)
+    let slug = '';
+    const [place, setPlace] = useState(false);
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://widget.cloudpayments.kz/bundles/cloudpayments.js';
@@ -147,7 +147,7 @@ const University = () => {
                     }
                 }, {
                     onSuccess: (options) => {
-                        console.log(slug)
+                        console.log(slug);
                         fetch('https://dorm-booking.up.railway.app/api/approve', {
                             method: 'POST',
                             headers: {
@@ -158,10 +158,10 @@ const University = () => {
                             .catch(error => console.error('Error fetching documents', error));
                     },
                     onFail: (reason, options) => {
-                        //действие при неуспешной оплате
+                        // действие при неуспешной оплате
                     },
                     onComplete: (paymentResult, options) => {
-                        //например вызов вашей аналитики
+                        // например вызов вашей аналитики
                     }
                 });
             };
@@ -175,20 +175,19 @@ const University = () => {
     const [university, setUniversity] = useState({
         slug: '',
         images: []
-    })
-    useEffect( () => {
+    });
+    useEffect(() => {
         fetch('https://dorm-booking.up.railway.app/api/university/' + id)
             .then((response) => {
-                return response.json()
+                return response.json();
             }).then(async data => {
-            console.log(data)
-            slug = data.slug
-            setUniversity(data)
+            console.log(data);
+            slug = data.slug;
+            setUniversity(data);
         })
             .catch((error) => {
-                console.log(error)
-            })
-
+                console.log(error);
+            });
     }, []);
     const MapWrapper = React.memo(
         () => {
@@ -197,13 +196,13 @@ const University = () => {
         () => true,
     );
 
-    const { id} = useParams();
+    const { id } = useParams();
     const latitude = 43.2077486;
     const longitude = 76.6664708;
 
-    return(
+    return (
         <div className="app-main">
-            <Header/>
+            <Header />
             <div className="detail-main">
                 <div className="main-left">
                     <Splide
@@ -217,10 +216,11 @@ const University = () => {
                         }}
                     >
                         <SplideSlide key={0}>
-                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image} alt="Slide"/>
+                            <img width="100%" src={'https://dorm-booking.up.railway.app' + university.image}
+                                 alt="Slide"/>
                         </SplideSlide>
                         {university.images?.map((el, index) => (
-                            <SplideSlide key={index+1}>
+                            <SplideSlide key={index + 1}>
                                 <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
                             </SplideSlide>
                         ))}
@@ -238,7 +238,6 @@ const University = () => {
                                 gap: '20px',
                             }}
                         >
-                            {/*{university.images[0]}*/}
                             {university.images?.map((el, index) => (
                                 <SplideSlide key={index}>
                                     <img width="100%" src={'https://dorm-booking.up.railway.app' + el} alt="Slide"/>
@@ -246,10 +245,7 @@ const University = () => {
                             ))}
                         </Splide>
                     </div>
-                    {/*{university.images.map((el, index) => {*/}
-                    {/*    <a>{el}</a>*/}
-                    {/*})}*/}
-                        <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Overview</h5>
+                    <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Overview</h5>
                     <p>
                         {university.description}
                     </p>
@@ -263,9 +259,10 @@ const University = () => {
                         visible
                         selectedByDefault
                         loading={loading}
-                        tooltipProps={{ multiline: true }}
+                        tooltipProps={{multiline: true}}
                         continuous
-                    />                    <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Location</h5>
+                    />
+                    <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Location</h5>
                     <div className="location-info">
                         <p className="location"><img src={location}/>{university.address} </p>
                     </div>
@@ -273,29 +270,93 @@ const University = () => {
                         <div style={{width: '100%', height: '100%'}}>
                             <div className="google-map">
                                 <iframe
-                                    src="https://maps.google.com/maps?q=43.2077486,76.6664708&hl=es;z=14&amp;output=embed"
-                                    width="600" height="450" style={{border:"0"}} allowFullScreen="" loading="lazy"
+                                    src={`https://maps.google.com/maps?q=${latitude},${longitude}&hl=es;z=14&amp;output=embed`}
+                                    width="600" height="450" style={{border: "0"}} allowFullScreen="" loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade">
-
                                 </iframe>
                             </div>
                         </div>
                     </div>
                     <h5 style={{paddingTop: '50px', paddingBottom: '10px'}}>Amenities</h5>
-                    <img src={facilities}/>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        flexWrap: 'wrap',
+                        width: '100%',
+                        maxWidth: '800px',
+                        lineHeight: '2',
+                        gap: '20px'
+                    }}>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>24/7 Security
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Community Events
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Guest Rooms
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Restroom Facilities
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Maintenance Services
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Convenient Location
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Safety Access
+                        </div>
+                        <div style={{
+                            width: '45%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap:'10px'
+                        }}><img src={checkmark} alt="Checkmark"/>Safety Access
+                        </div>
+                    </div>
                 </div>
 
                 <div className="main-right">
                     <h1>{university.name}</h1>
                     <h5 className="places">{university.places} places available</h5>
                     <div className="location-info">
-                        <p className="location"><img src={location}/>{university.address} </p>
+                    <p className="location"><img src={location}/>{university.address} </p>
                         <p className="distance"> {university.distance} </p>
                     </div>
                     <p className="location"><img src={calendar}/>Start date: {university.start} <br/> End
                         date: {university.end}.</p>
                     <div className="price__card">
-                        <div className="popular__time">{university.days_left / 3600 / 24} days left</div>
+                    <div className="popular__time">{university.days_left / 3600 / 24} days left</div>
                         <div className="price__info">
                             <div className="price">
                                 <p>Rent from</p>
@@ -309,7 +370,7 @@ const University = () => {
                                 <h>one-off payment</h>
                             </div>
                         </div>
-                        <p style={{width: '100%', textAlign: 'center', marginBottom: '50px'}}>Dinner included</p>
+                        <p style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Dinner included</p>
                         <div className="container__btn">
                             <button className="popular__btn" onClick={() => window.pay()} >Reserve now</button>
                         </div>
@@ -318,9 +379,9 @@ const University = () => {
 
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
-    )
+    );
 };
 
 export default University;

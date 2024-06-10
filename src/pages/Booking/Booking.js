@@ -151,7 +151,7 @@ const BookingStatus = ({ onUploadSuccess, onUploadFailure }) => {
 
                     </div>) :
                 (
-                    <h2>У вас нет активной брони</h2>
+                    <h2>You don't have active bookings</h2>
                 )}
         </div>
 
