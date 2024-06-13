@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import './Modal.css'; // Ensure to create a corresponding CSS file for styling
+import './Modal.css';
+import axios from "axios"; // Ensure to create a corresponding CSS file for styling
 
 const Modal = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
-        fullName: '',
-        universityName: '',
-        phoneNumber: '',
+        name: '',
+        university: '',
+        phone: '',
         email: '',
         document: null,
     });
@@ -19,9 +20,11 @@ const Modal = ({ isOpen, onClose }) => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form Data:', formData);
+        const response = await axios.post('https://dorm-booking.up.railway.app/api/request-for-partnership', formData);
+        console.log(response.data);
         onClose(); // Close the modal on form submission
     };
 
@@ -35,10 +38,10 @@ const Modal = ({ isOpen, onClose }) => {
                 <p style={{width: "80%"}}>Simply complete the form below and a member of our friendly team of experts will be in touch at a time that suits you.</p>
                 <p><a style={{color: 'red'}}> * </a> Required information</p>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" name="fullName" placeholder="Full name *" required onChange={handleChange}/>
-                    <input type="text" name="universityName" placeholder="University name *" required
+                    <input type="text" name="name" placeholder="Full name *" required onChange={handleChange}/>
+                    <input type="text" name="university" placeholder="University name *" required
                            onChange={handleChange}/>
-                    <input type="text" name="phoneNumber" placeholder="Phone number *" required
+                    <input type="text" name="phone" placeholder="Phone number *" required
                            onChange={handleChange}/>
                     <input type="email" name="email" placeholder="Email address *" required onChange={handleChange}/>
                     <input type="file" name="document" required onChange={handleChange}/>

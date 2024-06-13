@@ -57,7 +57,7 @@ const styles = {
         marginBottom: '15px'
     },
     cardContent: {
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         marginBottom: '10px'
     },
     editLink: {
