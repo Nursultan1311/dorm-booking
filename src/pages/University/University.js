@@ -273,10 +273,10 @@ const University = () => {
                         <div style={{width: '100%', height: '100%'}}>
                             <div className="google-map">
                                 <iframe
-                                    src="https://maps.google.com/maps?q=43.2077486,76.6664708&hl=es;z=14&amp;output=embed"
-                                    width="600" height="450" style={{border:"0"}} allowFullScreen="" loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade">
-
+                                    width="600"
+                                    height="450"
+                                    src="https://www.openstreetmap.org/export/embed.html?bbox=76.65953%2C43.19707%2C76.67953%2C43.21707&layer=mapnik&marker=43.20707%2C76.66953"
+                                >
                                 </iframe>
                             </div>
                         </div>
